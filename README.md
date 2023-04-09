@@ -2,22 +2,22 @@
 Software de varejo para determinar preço de produtos. Trabalho de Faculdade 
 
 
-Interface (1 a 2) -
+Interface (1 a 2):
                   
-                  -
+                 
 ____________________________________________________________________
 
-Codigo em si (1 a 2) -
+Codigo em si (1 a 2):
                      
-                     -
+                    
 ____________________________________________________________________
 
-Banco De Dados/ Excel (1 a 2) -
+Banco De Dados/ Excel (1 a 2):
                               
-                              -
+                             
 ____________________________________________________________________
 
-Documentacao (1 a 2) -
+Documentacao (1 a 2) :
                      
-                     -
+                     
 ____________________________________________________________________
