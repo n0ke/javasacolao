@@ -3,11 +3,13 @@ Software de varejo para determinar preço de produtos. Trabalho de Faculdade
 
 
 Interface (1 a 2):
-  - Lucas               
+  - Lucas  
+  - João
 ____________________________________________________________________
 
 Codigo em si (1):
-  - Gustavo                   
+  - Gustavo 
+  - João
                     
 ____________________________________________________________________
 
