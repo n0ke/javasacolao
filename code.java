@@ -16,8 +16,6 @@ public class CalculadoraSacolao {
 			s.nextLine(); // Limpa a tela
          
 			switch (opcao) {
-            	default:
-            		System.out.println("Opção inválida! Tente novamente.");
             	case 1:
             		// Pedir informações do produto
             		System.out.print("Digite o nome do produto: ");
@@ -62,6 +60,8 @@ public class CalculadoraSacolao {
             	case 3:
             		continuar = false;
             		break; 
+		default:
+            		System.out.println("Opção inválida! Tente novamente.");		
 			}
 		}
 	}
