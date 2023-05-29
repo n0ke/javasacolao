@@ -12,10 +12,7 @@ import java.util.ArrayList;
 public class Entrada {
 	
 	//	Métodos
-	public static Integer menuSelecao() {
-		
-		Scanner s = new Scanner(System.in);
-		s.useDelimiter("\n");
+	public static Integer menuSelecao(Scanner s) {
 		
 		System.out.println("\nSelecione uma opção:\n");
 		System.out.println("\t[1] | Cadastrar produto");
@@ -26,63 +23,62 @@ public class Entrada {
 		
 		Integer input = Integer.parseInt(s.nextLine());
 		
-		s.close();		//	Destroi objeto scanner
-		
 		return input;
 		
 	}
-	public static void menuCadastro(ArrayList<Produto> lista) {
-		
-		Scanner s = new Scanner(System.in);
-		s.useDelimiter("\n");
+	public static void menuCadastro(ArrayList<Produto> lista, Scanner s) {
 		
 		System.out.println("Digite o nome do produto: ");
 		String nome = s.nextLine();
 		System.out.println("Digite o preço de compra de uma unidade do produto: R$");
 		Double precoCompra = Double.parseDouble(s.nextLine());
 		System.out.println("Digite o lucro desejado (%): ");
-		Double lucro = Double.parseDouble(s.nextLine());
-		lucro /= 100;
+		Double lucro = Double.parseDouble(s.nextLine()) * .01;
 		
 		Produto produto = new Produto(nome, precoCompra, lucro);
 		lista.add(produto);
 		
-		s.close();
-		
 	}
-	public static void menuEditarCadastro(ArrayList<Produto> lista) {
+	public static void menuEditarCadastro(ArrayList<Produto> lista, Scanner s) {
 		
-		Scanner s = new Scanner(System.in);
-		s.useDelimiter("\n");
-		
-		System.out.println("[n] | Nome:\t\t| PreçoCompra:\t| Lucro:\n| PreçoVenda: ");
+		System.out.println("[n] | Nome:\t| PreçoCompra:\t| Lucro:\t| PreçoVenda: ");
 		for (int i = 0; i < lista.size(); i++) {
 		    Produto p = lista.get(i);
 		    System.out.printf(
-		    	"[%d] | %s\t| R$%2f\t\t| %2f\t%| R$%2f%n",
+		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
 		    	p.getPrecoCompra(),
-		    	p.getLucro(),
+		    	p.getLucro() * 100,
 		    	p.getPrecoCompra() * (p.getLucro() + 1)
 		    );
 		}
 		
 		System.out.print("\nDigite o índice do produto à ser editado: ['numero']");
 		
-		Integer index = Integer.parseInt(s.nextLine());
-			if (index <= lista.size()) {
+		Integer index = Integer.parseInt(s.nextLine()) - 1;
+			if ((index <= lista.size()) || (index > 1)) {
 				System.out.println("\nSelecione uma opção:\n");
-				System.out.println("\t[1] | Editar preço");
-				System.out.println("\t[2] | Editar lucro");
-				System.out.println("\t[3] | Excluir");
-				System.out.println("\t[4] | Cancelar\n");
+				System.out.println("\t[1] | Editar Nome");
+				System.out.println("\t[2] | Editar preço");
+				System.out.println("\t[3] | Editar lucro");
+				System.out.println("\t[4] | Excluir");
+				System.out.println("\t[5] | Cancelar\n");
 				
 				Integer input = Integer.parseInt(s.nextLine());
 				
 				switch(input) {
 				
 					case 1:{
+						
+						System.out.println("Digite o novo nome: ");
+						String novoNome = s.nextLine();
+						lista.get(index).setNome(novoNome);
+						System.out.println("Nome editado.");
+						
+					}break;
+				
+					case 2:{
 						
 						System.out.println("Digite o novo preço: ");
 						Double novoPreco = Double.parseDouble(s.nextLine());
@@ -91,61 +87,58 @@ public class Entrada {
 						
 					}break;
 					
-					case 2:{
+					case 3:{
 						
 						System.out.println("Digite o novo lucro: (%)");
-						Double novoLucro = Double.parseDouble(s.nextLine());
+						Double novoLucro = Double.parseDouble(s.nextLine()) * .01;
 						lista.get(index).setLucro(novoLucro);
 						System.out.println("Lucro editado.");
 						
 					}break;
 					
-					case 3:{
+					case 4:{
 						
-						lista.remove(index - 1);	//	Warning ta aki mas o Eclipse só ta surtando msm
+						lista.remove(lista.get(index));
 						System.out.println("Removido com sucesso!");
 						
 					}break;
 					
-					case 4: System.out.println("Operação cancelada."); break;
+					case 5: System.out.println("Operação cancelada."); break;
 					
 					default: System.out.println("Opção inválida.");
 					
 				}
+				
 		} else System.out.println("Índice inválido.");
 		
-		s.close();
 	}
 	public static void menuConsulta(ArrayList<Produto> lista) {
 		
-		System.out.println("[n] | Nome:\t\t| PreçoCompra:\t| Lucro:\n| PreçoVenda: ");
+		System.out.println("[n] | Nome:\t| PreçoCompra:\t| Lucro:\t| PreçoVenda: ");
 		for (int i = 0; i < lista.size(); i++) {
 		    Produto p = lista.get(i);
 		    System.out.printf(
-		    	"[%d] | %s\t| R$%2f\t\t| %2f\t%| R$%2f%n",
+		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
 		    	p.getPrecoCompra(),
-		    	p.getLucro(),
+		    	p.getLucro() * 100,
 		    	p.getPrecoCompra() * (p.getLucro() + 1)
 		    );
 		}
 		
 	}
-	public static void menuConsultaPlus(ArrayList<Produto> lista) {
+	public static void menuConsultaPlus(ArrayList<Produto> lista, Scanner s) {
 		
-		Scanner s = new Scanner(System.in);
-		s.useDelimiter("\n");
-		
-		System.out.println("[n] | Nome:\t\t| PreçoCompra:\t| Lucro:\n| PreçoVenda: ");
+		System.out.println("[n] | Nome:\t| PreçoCompra:\t| Lucro:\t| PreçoVenda: ");
 		for (int i = 0; i < lista.size(); i++) {
 		    Produto p = lista.get(i);
 		    System.out.printf(
-		    		"[%d] | %s\t| R$%2f\t\t| %2f\t%| R$%2f%n",
+		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
 		    	p.getPrecoCompra(),
-		    	p.getLucro(),
+		    	p.getLucro() * 100,
 		    	p.getPrecoCompra() * (p.getLucro() + 1)
 		    );
 		}
@@ -156,14 +149,11 @@ public class Entrada {
 		Integer q = Integer.parseInt(s.nextLine());
 		
 		System.out.printf(
-			"\n%d unidades de %s com lucro de %2f são R$%2f.",
+			"\n%d unidades de %s com lucro de %.2f%% são R$%.2f.",
 			q,
 			lista.get(index).getNome(),
 			lista.get(index).getLucro() * 100,
 			(lista.get(index).getLucro() + 1) * lista.get(index).getPrecoCompra() * q
 		);
-		
-		s.close();
 	}
-
 }

@@ -16,17 +16,17 @@ public class CalculadoraSacolao {
 		//	Loop principal
 		while (continuar) {
 			
-			Integer opcao = Entrada.menuSelecao();
+			Integer opcao = Entrada.menuSelecao(s);
          
 			switch (opcao) {
 			
-				case 1: Entrada.menuCadastro(listaProdutos); break;
+				case 1: Entrada.menuCadastro(listaProdutos, s); break;
 			
-            	case 2: Entrada.menuEditarCadastro(listaProdutos); break;
+            	case 2: Entrada.menuEditarCadastro(listaProdutos, s); break;
                
             	case 3: Entrada.menuConsulta(listaProdutos); break;
             	
-            	case 4: Entrada.menuConsultaPlus(listaProdutos); break;
+            	case 4: Entrada.menuConsultaPlus(listaProdutos, s); break;
             	
             	case 5:
             		
