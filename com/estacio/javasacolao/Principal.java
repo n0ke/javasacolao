@@ -83,7 +83,7 @@ public class Principal extends JFrame {
 		
 		JLabel UnLabel = new JLabel("Numero de Unidades");
 		UnLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		UnLabel.setBounds(525, 304, 149, 14);
+		UnLabel.setBounds(562, 304, 112, 14);
 		contentPane.add(UnLabel);
 		
 		Unidades = new JTextField();
@@ -103,31 +103,33 @@ public class Principal extends JFrame {
 		contentPane.add(CadNomeLabel);
 		
 		CadNome = new JTextField();
-		CadNome.setBounds(10, 381, 458, 20);
+		CadNome.setBounds(10, 381, 362, 20);
 		contentPane.add(CadNome);
 		CadNome.setColumns(10);
 		
 		JLabel CadPrecoLabel = new JLabel("Preço");
-		CadPrecoLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		CadPrecoLabel.setBounds(478, 363, 92, 14);
+		CadPrecoLabel.setBounds(382, 363, 92, 14);
 		contentPane.add(CadPrecoLabel);
 		
 		CadPreco = new JTextField();
 		CadPreco.setHorizontalAlignment(SwingConstants.TRAILING);
-		CadPreco.setBounds(478, 381, 92, 20);
+		CadPreco.setBounds(382, 381, 92, 20);
 		contentPane.add(CadPreco);
 		CadPreco.setColumns(10);
 		
 		JLabel CadLucroLabel = new JLabel("Lucro");
-		CadLucroLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		CadLucroLabel.setBounds(580, 363, 94, 14);
+		CadLucroLabel.setBounds(484, 363, 91, 14);
 		contentPane.add(CadLucroLabel);
 		
 		CadLucro = new JTextField();
 		CadLucro.setHorizontalAlignment(SwingConstants.TRAILING);
 		CadLucro.setColumns(10);
-		CadLucro.setBounds(580, 381, 94, 20);
+		CadLucro.setBounds(484, 381, 91, 20);
 		contentPane.add(CadLucro);
+		
+		JButton btnNewButton = new JButton("Aplicar");
+		btnNewButton.setBounds(582, 380, 92, 23);
+		contentPane.add(btnNewButton);
 		
 	}
 }
