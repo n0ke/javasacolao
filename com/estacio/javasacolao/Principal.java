@@ -81,6 +81,18 @@ public class Principal extends JFrame {
 		ProdutoExcluir.setBounds(145, 304, 125, 23);
 		contentPane.add(ProdutoExcluir);
 		
+		JLabel UnLabel = new JLabel("Numero de Unidades");
+		UnLabel.setHorizontalAlignment(SwingConstants.TRAILING);
+		UnLabel.setBounds(525, 304, 149, 14);
+		contentPane.add(UnLabel);
+		
+		Unidades = new JTextField();
+		Unidades.setHorizontalAlignment(SwingConstants.TRAILING);
+		Unidades.setText("1");
+		Unidades.setBounds(622, 321, 52, 20);
+		contentPane.add(Unidades);
+		Unidades.setColumns(10);
+		
 		Titulo2 = new JLabel("Cadastro de Produtos");
 		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Titulo2.setBounds(10, 338, 524, 14);
@@ -117,16 +129,5 @@ public class Principal extends JFrame {
 		CadLucro.setBounds(580, 381, 94, 20);
 		contentPane.add(CadLucro);
 		
-		JLabel UnLabel = new JLabel("Numero de Unidades");
-		UnLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		UnLabel.setBounds(525, 304, 149, 14);
-		contentPane.add(UnLabel);
-		
-		Unidades = new JTextField();
-		Unidades.setHorizontalAlignment(SwingConstants.TRAILING);
-		Unidades.setText("1");
-		Unidades.setBounds(622, 321, 52, 20);
-		contentPane.add(Unidades);
-		Unidades.setColumns(10);
 	}
 }
