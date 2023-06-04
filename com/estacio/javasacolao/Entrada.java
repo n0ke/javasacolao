@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 	(me ajuda plmdDs)
  */
 
-//	"Integer.parseInt(sc.nextLine())" resolve muito problema de imutabilidade! Usem isso ao invés de "s.nextInt()"
+//	"Integer.parseInt(scanner.nextLine())" resolve muito problema de imutabilidade! Usem isso ao invés de "scanner.nextInt()"
 
 public class Entrada {
 	
