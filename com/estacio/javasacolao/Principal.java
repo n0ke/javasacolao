@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -11,19 +13,29 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.SwingConstants;
+import java.util.ArrayList;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
 
 public class Principal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JTextField PesquisaBarra;
 	private JTable ProdutoTabela;
 	private JButton ProdutoNovo;
 	private JButton ProdutoExcluir;
-	private JLabel Titulo2;
-	private JTextField CadNome;
-	private JTextField CadPreco;
-	private JTextField CadLucro;
 	private JTextField Unidades;
+	
+	ArrayList<Produto> ListaProdutos = new ArrayList<Produto>();
 
 	/**
 	 * Launch the application.
@@ -37,6 +49,7 @@ public class Principal extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -47,7 +60,7 @@ public class Principal extends JFrame {
 	public Principal() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 448);
+		setBounds(100, 100, 700, 391);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -59,77 +72,78 @@ public class Principal extends JFrame {
 		Titulo1.setBounds(10, 11, 524, 14);
 		contentPane.add(Titulo1);
 		
+		//	Barra de Pesquisa
 		PesquisaBarra = new JTextField();
 		PesquisaBarra.setBounds(10, 36, 554, 20);
 		contentPane.add(PesquisaBarra);
 		PesquisaBarra.setColumns(10);
 		
+		//	Botão Pesquisa
 		JButton PesquisaBotao = new JButton("Pesquisar");
 		PesquisaBotao.setBounds(574, 35, 100, 23);
 		contentPane.add(PesquisaBotao);
 		
+		JScrollPane ProdutoTabScrlPane = new JScrollPane();
+		ProdutoTabScrlPane.setBounds(10, 67, 664, 226);
+		contentPane.add(ProdutoTabScrlPane);
+		
+		//	Tabela Produtos
 		ProdutoTabela = new JTable();
-		ProdutoTabela.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		ProdutoTabela.setBounds(10, 67, 664, 226);
-		contentPane.add(ProdutoTabela);
+		ProdutoTabScrlPane.setViewportView(ProdutoTabela);
+		ProdutoTabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		Modificadores.updateTabela(ProdutoTabela, ListaProdutos, ABORT);
+		TableCellEditor cellEditor = ProdutoTabela.getDefaultEditor(Object.class);
+        cellEditor.addCellEditorListener(new CellEditorListener() {	//	Evento de edição
+            @Override
+            public void editingStopped(ChangeEvent e) {
+                Modificadores.updateLista(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+                Modificadores.updateTabela(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+            }
+
+            @Override
+            public void editingCanceled(ChangeEvent e) {
+                /**/
+            }
+        });
 		
+		//	Criar Produto
 		ProdutoNovo = new JButton("Novo Produto");
-		ProdutoNovo.setBounds(10, 304, 125, 23);
+		ProdutoNovo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Produto produto = new Produto("(Inserir aqui)", 0.0, 0.0);
+				ListaProdutos.add(produto);
+				Modificadores.updateTabela(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+				
+			}
+		});
+		ProdutoNovo.setBounds(10, 304, 125, 39);
 		contentPane.add(ProdutoNovo);
-		
+				
+		//	Excluir Produto
 		ProdutoExcluir = new JButton("Excluir Produto");
-		ProdutoExcluir.setBounds(145, 304, 125, 23);
+		ProdutoExcluir.setBounds(145, 304, 125, 39);
 		contentPane.add(ProdutoExcluir);
 		
 		JLabel UnLabel = new JLabel("Numero de Unidades");
 		UnLabel.setHorizontalAlignment(SwingConstants.TRAILING);
-		UnLabel.setBounds(562, 304, 112, 14);
+		UnLabel.setBounds(542, 304, 132, 14);
 		contentPane.add(UnLabel);
 		
+		//	Numero de Unidades
 		Unidades = new JTextField();
 		Unidades.setHorizontalAlignment(SwingConstants.TRAILING);
 		Unidades.setText("1");
 		Unidades.setBounds(622, 321, 52, 20);
 		contentPane.add(Unidades);
 		Unidades.setColumns(10);
-		
-		Titulo2 = new JLabel("Cadastro de Produtos");
-		Titulo2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Titulo2.setBounds(10, 338, 524, 14);
-		contentPane.add(Titulo2);
-		
-		JLabel CadNomeLabel = new JLabel("Nome");
-		CadNomeLabel.setBounds(10, 363, 46, 14);
-		contentPane.add(CadNomeLabel);
-		
-		CadNome = new JTextField();
-		CadNome.setBounds(10, 381, 362, 20);
-		contentPane.add(CadNome);
-		CadNome.setColumns(10);
-		
-		JLabel CadPrecoLabel = new JLabel("Preço");
-		CadPrecoLabel.setBounds(382, 363, 92, 14);
-		contentPane.add(CadPrecoLabel);
-		
-		CadPreco = new JTextField();
-		CadPreco.setHorizontalAlignment(SwingConstants.TRAILING);
-		CadPreco.setBounds(382, 381, 92, 20);
-		contentPane.add(CadPreco);
-		CadPreco.setColumns(10);
-		
-		JLabel CadLucroLabel = new JLabel("Lucro");
-		CadLucroLabel.setBounds(484, 363, 91, 14);
-		contentPane.add(CadLucroLabel);
-		
-		CadLucro = new JTextField();
-		CadLucro.setHorizontalAlignment(SwingConstants.TRAILING);
-		CadLucro.setColumns(10);
-		CadLucro.setBounds(484, 381, 91, 20);
-		contentPane.add(CadLucro);
-		
-		JButton btnNewButton = new JButton("Aplicar");
-		btnNewButton.setBounds(582, 380, 92, 23);
-		contentPane.add(btnNewButton);
+		Unidades.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	Modificadores.updateLista(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+            }
+        });
 		
 	}
 }

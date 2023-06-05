@@ -21,11 +21,14 @@ public class Produto {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Double getPrecoCompra() {
-		return precoCompra;
+	public Double getPrecoCompra(int n) {
+		return precoCompra * n;
 	}
 	public void setPrecoCompra(Double precoCompra) {
 		this.precoCompra = precoCompra;
+	}
+	public Double getPrecoVenda(int n) {
+		return ((this.precoCompra * n) * (this.lucro + 1));
 	}
 	public Double getLucro() {
 		return lucro;

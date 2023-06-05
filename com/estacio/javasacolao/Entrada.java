@@ -48,9 +48,9 @@ public class Entrada {
 		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
-		    	p.getPrecoCompra(),
+		    	p.getPrecoCompra(1),
 		    	p.getLucro() * 100,
-		    	p.getPrecoCompra() * (p.getLucro() + 1)
+		    	p.getPrecoCompra(1) * (p.getLucro() + 1)
 		    );
 		}
 		
@@ -121,9 +121,9 @@ public class Entrada {
 		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
-		    	p.getPrecoCompra(),
+		    	p.getPrecoCompra(1),
 		    	p.getLucro() * 100,
-		    	p.getPrecoCompra() * (p.getLucro() + 1)
+		    	p.getPrecoCompra(1) * (p.getLucro() + 1)
 		    );
 		}
 		
@@ -137,9 +137,9 @@ public class Entrada {
 		    	"[%d] | %s\t| R$%.2f\t| %.2f%%\t| R$%.2f%n",
 		    	i + 1,
 		    	p.getNome(),
-		    	p.getPrecoCompra(),
+		    	p.getPrecoCompra(1),
 		    	p.getLucro() * 100,
-		    	p.getPrecoCompra() * (p.getLucro() + 1)
+		    	p.getPrecoCompra(1) * (p.getLucro() + 1)
 		    );
 		}
 		
