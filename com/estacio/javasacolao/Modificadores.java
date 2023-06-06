@@ -1,21 +1,11 @@
 package com.estacio.javasacolao;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.SwingConstants;
-import java.util.ArrayList;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
+import javax.swing.border.BevelBorder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Modificadores {
 	
@@ -74,6 +64,7 @@ public class Modificadores {
 			lista.get(i).setNome(nome.toString());
 			lista.get(i).setPrecoCompra(Double.parseDouble(preco.toString()) / qtt);
 			lista.get(i).setLucro(Double.parseDouble(lucro.toString()) * .01);
+			Collections.sort(lista, Comparator.comparing(Produto::getNome));
 		}
 	}
 }

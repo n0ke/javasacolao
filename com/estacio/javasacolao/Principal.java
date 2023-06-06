@@ -1,24 +1,24 @@
 package com.estacio.javasacolao;
 
+import java.util.ArrayList;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.border.BevelBorder;
-import javax.swing.SwingConstants;
-import java.util.ArrayList;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
 import javax.swing.ListSelectionModel;
+import javax.swing.JTable;
+import javax.swing.table.TableCellEditor;
+import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 
 public class Principal extends JFrame {
@@ -122,6 +122,12 @@ public class Principal extends JFrame {
 				
 		//	Excluir Produto
 		ProdutoExcluir = new JButton("Excluir Produto");
+		ProdutoExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ListaProdutos.remove(ProdutoTabela.getSelectedRow());
+				Modificadores.updateTabela(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+			}
+		});
 		ProdutoExcluir.setBounds(145, 304, 125, 39);
 		contentPane.add(ProdutoExcluir);
 		
@@ -137,12 +143,18 @@ public class Principal extends JFrame {
 		Unidades.setBounds(622, 321, 52, 20);
 		contentPane.add(Unidades);
 		Unidades.setColumns(10);
-		Unidades.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	Modificadores.updateLista(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+		Unidades.getDocument().addDocumentListener(new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent arg0) {
+            	Modificadores.updateTabela(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
             }
+			
+            public void insertUpdate(DocumentEvent arg0) {
+                Modificadores.updateTabela(ProdutoTabela, ListaProdutos, Integer.parseInt(Unidades.getText()));
+            }
+			
+            public void removeUpdate(DocumentEvent arg0) {}
+            
         });
 		
 	}
