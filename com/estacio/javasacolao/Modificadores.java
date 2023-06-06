@@ -64,7 +64,6 @@ public class Modificadores {
 			lista.get(i).setNome(nome.toString());
 			lista.get(i).setPrecoCompra(Double.parseDouble(preco.toString()) / qtt);
 			lista.get(i).setLucro(Double.parseDouble(lucro.toString()) * .01);
-			Collections.sort(lista, Comparator.comparing(Produto::getNome));
 		}
 	}
 }
