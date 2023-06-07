@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 
 public class Principal extends JFrame {
-
+	
 	/**
 	 * 
 	 */
@@ -156,6 +156,10 @@ public class Principal extends JFrame {
             public void removeUpdate(DocumentEvent arg0) {}
             
         });
+		
+	}
+
+	public static void actionPerformed() {
 		
 	}
 }
