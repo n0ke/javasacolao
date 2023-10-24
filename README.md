@@ -1,24 +1,23 @@
 # javasacolao
-Software de varejo para determinar preço de produtos. Trabalho de Faculdade 
+ Trabalho de Faculdade 
 
 
-Interface (1 a 2):
+Interface:
   - Lucas  
-  - João
 ____________________________________________________________________
 
-Codigo em si (1):
+Codigo em si:
   - Gustavo 
-  - João
+  - Lucas
                     
 ____________________________________________________________________
 
-Banco De Dados/ Excel (1 a 2):
+Banco De Dados:
    - Pedro                              
                              
 ____________________________________________________________________
 
-Documentacao (1 a 2) :
-   - Marcus                 
+Documentacao:
+   - João                 
    - Matheus                 
 ____________________________________________________________________
